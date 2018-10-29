@@ -6,7 +6,7 @@
 #
 Name     : luarocks
 Version  : 3.0.3
-Release  : 1
+Release  : 2
 URL      : https://luarocks.org/releases/luarocks-3.0.3.tar.gz
 Source0  : https://luarocks.org/releases/luarocks-3.0.3.tar.gz
 Source99 : https://luarocks.org/releases/luarocks-3.0.3.tar.gz.asc
@@ -56,17 +56,21 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540789934
-%configure --disable-static || ./configure --prefix=/usr
+export SOURCE_DATE_EPOCH=1540790126
+%configure --disable-static || ./configure --prefix=/usr --with-lua-interpreter=lua
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1540789934
+export SOURCE_DATE_EPOCH=1540790126
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
 cp COPYING %{buildroot}/usr/share/package-licenses/luarocks/COPYING
 cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luarocks/spec_fixtures_git_repo_LICENSE
 %make_install
+## install_append content
+./configure --prefix=/usr --with-lua-interpreter=luajit
+%make_install
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -169,6 +173,97 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.1/luarocks/upload/api.lua
 /usr/share/lua/5.1/luarocks/upload/multipart.lua
 /usr/share/lua/5.1/luarocks/util.lua
+/usr/share/lua/5.3/luarocks/admin/cache.lua
+/usr/share/lua/5.3/luarocks/admin/cmd/add.lua
+/usr/share/lua/5.3/luarocks/admin/cmd/make_manifest.lua
+/usr/share/lua/5.3/luarocks/admin/cmd/refresh_cache.lua
+/usr/share/lua/5.3/luarocks/admin/cmd/remove.lua
+/usr/share/lua/5.3/luarocks/admin/index.lua
+/usr/share/lua/5.3/luarocks/build.lua
+/usr/share/lua/5.3/luarocks/build/builtin.lua
+/usr/share/lua/5.3/luarocks/build/cmake.lua
+/usr/share/lua/5.3/luarocks/build/command.lua
+/usr/share/lua/5.3/luarocks/build/make.lua
+/usr/share/lua/5.3/luarocks/cmd.lua
+/usr/share/lua/5.3/luarocks/cmd/build.lua
+/usr/share/lua/5.3/luarocks/cmd/config.lua
+/usr/share/lua/5.3/luarocks/cmd/doc.lua
+/usr/share/lua/5.3/luarocks/cmd/download.lua
+/usr/share/lua/5.3/luarocks/cmd/help.lua
+/usr/share/lua/5.3/luarocks/cmd/init.lua
+/usr/share/lua/5.3/luarocks/cmd/install.lua
+/usr/share/lua/5.3/luarocks/cmd/lint.lua
+/usr/share/lua/5.3/luarocks/cmd/list.lua
+/usr/share/lua/5.3/luarocks/cmd/make.lua
+/usr/share/lua/5.3/luarocks/cmd/new_version.lua
+/usr/share/lua/5.3/luarocks/cmd/pack.lua
+/usr/share/lua/5.3/luarocks/cmd/path.lua
+/usr/share/lua/5.3/luarocks/cmd/purge.lua
+/usr/share/lua/5.3/luarocks/cmd/remove.lua
+/usr/share/lua/5.3/luarocks/cmd/search.lua
+/usr/share/lua/5.3/luarocks/cmd/show.lua
+/usr/share/lua/5.3/luarocks/cmd/test.lua
+/usr/share/lua/5.3/luarocks/cmd/unpack.lua
+/usr/share/lua/5.3/luarocks/cmd/upload.lua
+/usr/share/lua/5.3/luarocks/cmd/which.lua
+/usr/share/lua/5.3/luarocks/cmd/write_rockspec.lua
+/usr/share/lua/5.3/luarocks/core/cfg.lua
+/usr/share/lua/5.3/luarocks/core/dir.lua
+/usr/share/lua/5.3/luarocks/core/manif.lua
+/usr/share/lua/5.3/luarocks/core/path.lua
+/usr/share/lua/5.3/luarocks/core/persist.lua
+/usr/share/lua/5.3/luarocks/core/util.lua
+/usr/share/lua/5.3/luarocks/core/vers.lua
+/usr/share/lua/5.3/luarocks/deps.lua
+/usr/share/lua/5.3/luarocks/dir.lua
+/usr/share/lua/5.3/luarocks/download.lua
+/usr/share/lua/5.3/luarocks/fetch.lua
+/usr/share/lua/5.3/luarocks/fetch/cvs.lua
+/usr/share/lua/5.3/luarocks/fetch/git.lua
+/usr/share/lua/5.3/luarocks/fetch/git_file.lua
+/usr/share/lua/5.3/luarocks/fetch/git_http.lua
+/usr/share/lua/5.3/luarocks/fetch/git_https.lua
+/usr/share/lua/5.3/luarocks/fetch/git_ssh.lua
+/usr/share/lua/5.3/luarocks/fetch/hg.lua
+/usr/share/lua/5.3/luarocks/fetch/hg_http.lua
+/usr/share/lua/5.3/luarocks/fetch/hg_https.lua
+/usr/share/lua/5.3/luarocks/fetch/hg_ssh.lua
+/usr/share/lua/5.3/luarocks/fetch/sscm.lua
+/usr/share/lua/5.3/luarocks/fetch/svn.lua
+/usr/share/lua/5.3/luarocks/fs.lua
+/usr/share/lua/5.3/luarocks/fs/lua.lua
+/usr/share/lua/5.3/luarocks/fs/tools.lua
+/usr/share/lua/5.3/luarocks/fs/unix.lua
+/usr/share/lua/5.3/luarocks/fs/unix/tools.lua
+/usr/share/lua/5.3/luarocks/fs/win32.lua
+/usr/share/lua/5.3/luarocks/fs/win32/pe-parser.lua
+/usr/share/lua/5.3/luarocks/fs/win32/tools.lua
+/usr/share/lua/5.3/luarocks/fun.lua
+/usr/share/lua/5.3/luarocks/loader.lua
+/usr/share/lua/5.3/luarocks/manif.lua
+/usr/share/lua/5.3/luarocks/manif/writer.lua
+/usr/share/lua/5.3/luarocks/pack.lua
+/usr/share/lua/5.3/luarocks/path.lua
+/usr/share/lua/5.3/luarocks/persist.lua
+/usr/share/lua/5.3/luarocks/queries.lua
+/usr/share/lua/5.3/luarocks/remove.lua
+/usr/share/lua/5.3/luarocks/repos.lua
+/usr/share/lua/5.3/luarocks/require.lua
+/usr/share/lua/5.3/luarocks/results.lua
+/usr/share/lua/5.3/luarocks/rockspecs.lua
+/usr/share/lua/5.3/luarocks/search.lua
+/usr/share/lua/5.3/luarocks/test.lua
+/usr/share/lua/5.3/luarocks/test/busted.lua
+/usr/share/lua/5.3/luarocks/test/command.lua
+/usr/share/lua/5.3/luarocks/tools/patch.lua
+/usr/share/lua/5.3/luarocks/tools/tar.lua
+/usr/share/lua/5.3/luarocks/tools/zip.lua
+/usr/share/lua/5.3/luarocks/type/manifest.lua
+/usr/share/lua/5.3/luarocks/type/rockspec.lua
+/usr/share/lua/5.3/luarocks/type_check.lua
+/usr/share/lua/5.3/luarocks/upload/api.lua
+/usr/share/lua/5.3/luarocks/upload/multipart.lua
+/usr/share/lua/5.3/luarocks/util.lua
 
 %files license
 %defattr(0644,root,root,0755)
