@@ -6,7 +6,7 @@
 #
 Name     : luarocks
 Version  : 3.0.3
-Release  : 2
+Release  : 3
 URL      : https://luarocks.org/releases/luarocks-3.0.3.tar.gz
 Source0  : https://luarocks.org/releases/luarocks-3.0.3.tar.gz
 Source99 : https://luarocks.org/releases/luarocks-3.0.3.tar.gz.asc
@@ -16,8 +16,8 @@ License  : MIT
 Requires: luarocks-bin = %{version}-%{release}
 Requires: luarocks-data = %{version}-%{release}
 Requires: luarocks-license = %{version}-%{release}
+BuildRequires : LuaJIT-dev
 BuildRequires : lua-dev
-BuildRequires : luajit-dev
 
 %description
 <p align="center"><a href="http://luarocks.org"><img border="0" src="http://luarocks.github.io/luarocks/luarocks.png" alt="LuaRocks" width="500px"></a></p>
@@ -56,12 +56,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540790126
+export SOURCE_DATE_EPOCH=1540791065
 %configure --disable-static || ./configure --prefix=/usr --with-lua-interpreter=lua
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1540790126
+export SOURCE_DATE_EPOCH=1540791065
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
 cp COPYING %{buildroot}/usr/share/package-licenses/luarocks/COPYING
