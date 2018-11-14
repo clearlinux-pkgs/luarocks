@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x3FD8F43C2BB3C478 (h@hisham.hm)
 #
 Name     : luarocks
-Version  : 3.0.3
-Release  : 3
-URL      : https://luarocks.org/releases/luarocks-3.0.3.tar.gz
-Source0  : https://luarocks.org/releases/luarocks-3.0.3.tar.gz
-Source99 : https://luarocks.org/releases/luarocks-3.0.3.tar.gz.asc
+Version  : 3.0.4
+Release  : 4
+URL      : https://luarocks.org/releases/luarocks-3.0.4.tar.gz
+Source0  : https://luarocks.org/releases/luarocks-3.0.4.tar.gz
+Source99 : https://luarocks.org/releases/luarocks-3.0.4.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
@@ -49,19 +49,19 @@ license components for the luarocks package.
 
 
 %prep
-%setup -q -n luarocks-3.0.3
+%setup -q -n luarocks-3.0.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540791065
+export SOURCE_DATE_EPOCH=1542164047
 %configure --disable-static || ./configure --prefix=/usr --with-lua-interpreter=lua
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1540791065
+export SOURCE_DATE_EPOCH=1542164047
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
 cp COPYING %{buildroot}/usr/share/package-licenses/luarocks/COPYING
@@ -121,6 +121,7 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.1/luarocks/core/manif.lua
 /usr/share/lua/5.1/luarocks/core/path.lua
 /usr/share/lua/5.1/luarocks/core/persist.lua
+/usr/share/lua/5.1/luarocks/core/sysdetect.lua
 /usr/share/lua/5.1/luarocks/core/util.lua
 /usr/share/lua/5.1/luarocks/core/vers.lua
 /usr/share/lua/5.1/luarocks/deps.lua
@@ -145,7 +146,6 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.1/luarocks/fs/unix.lua
 /usr/share/lua/5.1/luarocks/fs/unix/tools.lua
 /usr/share/lua/5.1/luarocks/fs/win32.lua
-/usr/share/lua/5.1/luarocks/fs/win32/pe-parser.lua
 /usr/share/lua/5.1/luarocks/fs/win32/tools.lua
 /usr/share/lua/5.1/luarocks/fun.lua
 /usr/share/lua/5.1/luarocks/loader.lua
@@ -212,6 +212,7 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.3/luarocks/core/manif.lua
 /usr/share/lua/5.3/luarocks/core/path.lua
 /usr/share/lua/5.3/luarocks/core/persist.lua
+/usr/share/lua/5.3/luarocks/core/sysdetect.lua
 /usr/share/lua/5.3/luarocks/core/util.lua
 /usr/share/lua/5.3/luarocks/core/vers.lua
 /usr/share/lua/5.3/luarocks/deps.lua
@@ -236,7 +237,6 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.3/luarocks/fs/unix.lua
 /usr/share/lua/5.3/luarocks/fs/unix/tools.lua
 /usr/share/lua/5.3/luarocks/fs/win32.lua
-/usr/share/lua/5.3/luarocks/fs/win32/pe-parser.lua
 /usr/share/lua/5.3/luarocks/fs/win32/tools.lua
 /usr/share/lua/5.3/luarocks/fun.lua
 /usr/share/lua/5.3/luarocks/loader.lua
