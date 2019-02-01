@@ -1,2 +1,4 @@
 ./configure --prefix=/usr --with-lua-interpreter=luajit
 %make_install
+./configure --prefix=/usr --with-lua-interpreter=lua5.2
+%make_install
