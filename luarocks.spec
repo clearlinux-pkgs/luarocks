@@ -6,7 +6,7 @@
 #
 Name     : luarocks
 Version  : 3.0.4
-Release  : 5
+Release  : 6
 URL      : https://luarocks.org/releases/luarocks-3.0.4.tar.gz
 Source0  : https://luarocks.org/releases/luarocks-3.0.4.tar.gz
 Source99 : https://luarocks.org/releases/luarocks-3.0.4.tar.gz.asc
@@ -19,6 +19,7 @@ Requires: luarocks-license = %{version}-%{release}
 BuildRequires : LuaJIT-dev
 BuildRequires : lua-dev
 BuildRequires : lua52-dev
+Patch1: 0001-install-modules-into-lib64.patch
 
 %description
 <p align="center"><a href="http://luarocks.org"><img border="0" src="http://luarocks.github.io/luarocks/luarocks.png" alt="LuaRocks" width="500px"></a></p>
@@ -51,18 +52,20 @@ license components for the luarocks package.
 
 %prep
 %setup -q -n luarocks-3.0.4
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549046309
+export SOURCE_DATE_EPOCH=1554424855
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static || ./configure --prefix=/usr --with-lua-interpreter=lua
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1549046309
+export SOURCE_DATE_EPOCH=1554424855
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
 cp COPYING %{buildroot}/usr/share/package-licenses/luarocks/COPYING
