@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x3FD8F43C2BB3C478 (h@hisham.hm)
 #
 Name     : luarocks
-Version  : 3.0.4
-Release  : 6
-URL      : https://luarocks.org/releases/luarocks-3.0.4.tar.gz
-Source0  : https://luarocks.org/releases/luarocks-3.0.4.tar.gz
-Source99 : https://luarocks.org/releases/luarocks-3.0.4.tar.gz.asc
-Summary  : No detailed summary available
+Version  : 3.1.0
+Release  : 7
+URL      : https://luarocks.org/releases/luarocks-3.1.0.tar.gz
+Source0  : https://luarocks.org/releases/luarocks-3.1.0.tar.gz
+Source99 : https://luarocks.org/releases/luarocks-3.1.0.tar.gz.asc
+Summary  : Deployment and management system for Lua modules
 Group    : Development/Tools
 License  : MIT
 Requires: luarocks-bin = %{version}-%{release}
@@ -51,7 +51,7 @@ license components for the luarocks package.
 
 
 %prep
-%setup -q -n luarocks-3.0.4
+%setup -q -n luarocks-3.1.0
 %patch1 -p1
 
 %build
@@ -59,13 +59,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554424855
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export SOURCE_DATE_EPOCH=1556548459
 %configure --disable-static || ./configure --prefix=/usr --with-lua-interpreter=lua
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1554424855
+export SOURCE_DATE_EPOCH=1556548459
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
 cp COPYING %{buildroot}/usr/share/package-licenses/luarocks/COPYING
@@ -167,6 +166,7 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.1/luarocks/results.lua
 /usr/share/lua/5.1/luarocks/rockspecs.lua
 /usr/share/lua/5.1/luarocks/search.lua
+/usr/share/lua/5.1/luarocks/signing.lua
 /usr/share/lua/5.1/luarocks/test.lua
 /usr/share/lua/5.1/luarocks/test/busted.lua
 /usr/share/lua/5.1/luarocks/test/command.lua
@@ -258,6 +258,7 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.2/luarocks/results.lua
 /usr/share/lua/5.2/luarocks/rockspecs.lua
 /usr/share/lua/5.2/luarocks/search.lua
+/usr/share/lua/5.2/luarocks/signing.lua
 /usr/share/lua/5.2/luarocks/test.lua
 /usr/share/lua/5.2/luarocks/test/busted.lua
 /usr/share/lua/5.2/luarocks/test/command.lua
@@ -349,6 +350,7 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.3/luarocks/results.lua
 /usr/share/lua/5.3/luarocks/rockspecs.lua
 /usr/share/lua/5.3/luarocks/search.lua
+/usr/share/lua/5.3/luarocks/signing.lua
 /usr/share/lua/5.3/luarocks/test.lua
 /usr/share/lua/5.3/luarocks/test/busted.lua
 /usr/share/lua/5.3/luarocks/test/command.lua
