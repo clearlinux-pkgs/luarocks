@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x3FD8F43C2BB3C478 (h@hisham.hm)
 #
 Name     : luarocks
-Version  : 3.1.0
-Release  : 7
-URL      : https://luarocks.org/releases/luarocks-3.1.0.tar.gz
-Source0  : https://luarocks.org/releases/luarocks-3.1.0.tar.gz
-Source99 : https://luarocks.org/releases/luarocks-3.1.0.tar.gz.asc
+Version  : 3.1.1
+Release  : 8
+URL      : https://luarocks.org/releases/luarocks-3.1.1.tar.gz
+Source0  : https://luarocks.org/releases/luarocks-3.1.1.tar.gz
+Source99 : https://luarocks.org/releases/luarocks-3.1.1.tar.gz.asc
 Summary  : Deployment and management system for Lua modules
 Group    : Development/Tools
 License  : MIT
@@ -51,7 +51,7 @@ license components for the luarocks package.
 
 
 %prep
-%setup -q -n luarocks-3.1.0
+%setup -q -n luarocks-3.1.1
 %patch1 -p1
 
 %build
@@ -59,12 +59,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556548459
+export SOURCE_DATE_EPOCH=1557192746
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static || ./configure --prefix=/usr --with-lua-interpreter=lua
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1556548459
+export SOURCE_DATE_EPOCH=1557192746
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
 cp COPYING %{buildroot}/usr/share/package-licenses/luarocks/COPYING
