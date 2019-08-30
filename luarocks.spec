@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x3FD8F43C2BB3C478 (h@hisham.hm)
 #
 Name     : luarocks
-Version  : 3.1.3
-Release  : 10
-URL      : https://luarocks.org/releases/luarocks-3.1.3.tar.gz
-Source0  : https://luarocks.org/releases/luarocks-3.1.3.tar.gz
-Source99 : https://luarocks.org/releases/luarocks-3.1.3.tar.gz.asc
-Summary  : No detailed summary available
+Version  : 3.2.0
+Release  : 11
+URL      : https://luarocks.org/releases/luarocks-3.2.0.tar.gz
+Source0  : https://luarocks.org/releases/luarocks-3.2.0.tar.gz
+Source1 : https://luarocks.org/releases/luarocks-3.2.0.tar.gz.asc
+Summary  : Deployment and management system for Lua modules
 Group    : Development/Tools
 License  : MIT
 Requires: luarocks-bin = %{version}-%{release}
@@ -51,15 +51,16 @@ license components for the luarocks package.
 
 
 %prep
-%setup -q -n luarocks-3.1.3
+%setup -q -n luarocks-3.2.0
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559883150
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1567182294
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -72,7 +73,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1559883150
+export SOURCE_DATE_EPOCH=1567182294
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
 cp COPYING %{buildroot}/usr/share/package-licenses/luarocks/COPYING
@@ -101,6 +102,7 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.1/luarocks/admin/cmd/refresh_cache.lua
 /usr/share/lua/5.1/luarocks/admin/cmd/remove.lua
 /usr/share/lua/5.1/luarocks/admin/index.lua
+/usr/share/lua/5.1/luarocks/argparse.lua
 /usr/share/lua/5.1/luarocks/build.lua
 /usr/share/lua/5.1/luarocks/build/builtin.lua
 /usr/share/lua/5.1/luarocks/build/cmake.lua
@@ -111,7 +113,6 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.1/luarocks/cmd/config.lua
 /usr/share/lua/5.1/luarocks/cmd/doc.lua
 /usr/share/lua/5.1/luarocks/cmd/download.lua
-/usr/share/lua/5.1/luarocks/cmd/help.lua
 /usr/share/lua/5.1/luarocks/cmd/init.lua
 /usr/share/lua/5.1/luarocks/cmd/install.lua
 /usr/share/lua/5.1/luarocks/cmd/lint.lua
@@ -155,7 +156,9 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.1/luarocks/fetch/svn.lua
 /usr/share/lua/5.1/luarocks/fs.lua
 /usr/share/lua/5.1/luarocks/fs/freebsd.lua
+/usr/share/lua/5.1/luarocks/fs/linux.lua
 /usr/share/lua/5.1/luarocks/fs/lua.lua
+/usr/share/lua/5.1/luarocks/fs/macosx.lua
 /usr/share/lua/5.1/luarocks/fs/tools.lua
 /usr/share/lua/5.1/luarocks/fs/unix.lua
 /usr/share/lua/5.1/luarocks/fs/unix/tools.lua
@@ -194,6 +197,7 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.2/luarocks/admin/cmd/refresh_cache.lua
 /usr/share/lua/5.2/luarocks/admin/cmd/remove.lua
 /usr/share/lua/5.2/luarocks/admin/index.lua
+/usr/share/lua/5.2/luarocks/argparse.lua
 /usr/share/lua/5.2/luarocks/build.lua
 /usr/share/lua/5.2/luarocks/build/builtin.lua
 /usr/share/lua/5.2/luarocks/build/cmake.lua
@@ -204,7 +208,6 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.2/luarocks/cmd/config.lua
 /usr/share/lua/5.2/luarocks/cmd/doc.lua
 /usr/share/lua/5.2/luarocks/cmd/download.lua
-/usr/share/lua/5.2/luarocks/cmd/help.lua
 /usr/share/lua/5.2/luarocks/cmd/init.lua
 /usr/share/lua/5.2/luarocks/cmd/install.lua
 /usr/share/lua/5.2/luarocks/cmd/lint.lua
@@ -248,7 +251,9 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.2/luarocks/fetch/svn.lua
 /usr/share/lua/5.2/luarocks/fs.lua
 /usr/share/lua/5.2/luarocks/fs/freebsd.lua
+/usr/share/lua/5.2/luarocks/fs/linux.lua
 /usr/share/lua/5.2/luarocks/fs/lua.lua
+/usr/share/lua/5.2/luarocks/fs/macosx.lua
 /usr/share/lua/5.2/luarocks/fs/tools.lua
 /usr/share/lua/5.2/luarocks/fs/unix.lua
 /usr/share/lua/5.2/luarocks/fs/unix/tools.lua
@@ -287,6 +292,7 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.3/luarocks/admin/cmd/refresh_cache.lua
 /usr/share/lua/5.3/luarocks/admin/cmd/remove.lua
 /usr/share/lua/5.3/luarocks/admin/index.lua
+/usr/share/lua/5.3/luarocks/argparse.lua
 /usr/share/lua/5.3/luarocks/build.lua
 /usr/share/lua/5.3/luarocks/build/builtin.lua
 /usr/share/lua/5.3/luarocks/build/cmake.lua
@@ -297,7 +303,6 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.3/luarocks/cmd/config.lua
 /usr/share/lua/5.3/luarocks/cmd/doc.lua
 /usr/share/lua/5.3/luarocks/cmd/download.lua
-/usr/share/lua/5.3/luarocks/cmd/help.lua
 /usr/share/lua/5.3/luarocks/cmd/init.lua
 /usr/share/lua/5.3/luarocks/cmd/install.lua
 /usr/share/lua/5.3/luarocks/cmd/lint.lua
@@ -341,7 +346,9 @@ cp spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luaroc
 /usr/share/lua/5.3/luarocks/fetch/svn.lua
 /usr/share/lua/5.3/luarocks/fs.lua
 /usr/share/lua/5.3/luarocks/fs/freebsd.lua
+/usr/share/lua/5.3/luarocks/fs/linux.lua
 /usr/share/lua/5.3/luarocks/fs/lua.lua
+/usr/share/lua/5.3/luarocks/fs/macosx.lua
 /usr/share/lua/5.3/luarocks/fs/tools.lua
 /usr/share/lua/5.3/luarocks/fs/unix.lua
 /usr/share/lua/5.3/luarocks/fs/unix/tools.lua
