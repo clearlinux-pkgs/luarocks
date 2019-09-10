@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x3FD8F43C2BB3C478 (h@hisham.hm)
 #
 Name     : luarocks
-Version  : 3.2.0
-Release  : 11
-URL      : https://luarocks.org/releases/luarocks-3.2.0.tar.gz
-Source0  : https://luarocks.org/releases/luarocks-3.2.0.tar.gz
-Source1 : https://luarocks.org/releases/luarocks-3.2.0.tar.gz.asc
+Version  : 3.2.1
+Release  : 12
+URL      : https://luarocks.org/releases/luarocks-3.2.1.tar.gz
+Source0  : https://luarocks.org/releases/luarocks-3.2.1.tar.gz
+Source1 : https://luarocks.org/releases/luarocks-3.2.1.tar.gz.asc
 Summary  : Deployment and management system for Lua modules
 Group    : Development/Tools
 License  : MIT
@@ -51,7 +51,7 @@ license components for the luarocks package.
 
 
 %prep
-%setup -q -n luarocks-3.2.0
+%setup -q -n luarocks-3.2.1
 %patch1 -p1
 
 %build
@@ -59,7 +59,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567182294
+export SOURCE_DATE_EPOCH=1568156852
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -73,7 +73,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1567182294
+export SOURCE_DATE_EPOCH=1568156852
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
 cp COPYING %{buildroot}/usr/share/package-licenses/luarocks/COPYING
