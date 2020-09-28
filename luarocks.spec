@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x3FD8F43C2BB3C478 (h@hisham.hm)
 #
 Name     : luarocks
-Version  : 3.3.1
-Release  : 14
-URL      : https://luarocks.org/releases/luarocks-3.3.1.tar.gz
-Source0  : https://luarocks.org/releases/luarocks-3.3.1.tar.gz
-Source1  : https://luarocks.org/releases/luarocks-3.3.1.tar.gz.asc
-Summary  : Deployment and management system for Lua modules
+Version  : 3.4.0
+Release  : 15
+URL      : https://luarocks.org/releases/luarocks-3.4.0.tar.gz
+Source0  : https://luarocks.org/releases/luarocks-3.4.0.tar.gz
+Source1  : https://luarocks.org/releases/luarocks-3.4.0.tar.gz.asc
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
 Requires: luarocks-bin = %{version}-%{release}
@@ -51,8 +51,8 @@ license components for the luarocks package.
 
 
 %prep
-%setup -q -n luarocks-3.3.1
-cd %{_builddir}/luarocks-3.3.1
+%setup -q -n luarocks-3.4.0
+cd %{_builddir}/luarocks-3.4.0
 %patch1 -p1
 
 %build
@@ -60,25 +60,24 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581089606
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1601313942
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static || ./configure --prefix=/usr --with-lua-interpreter=lua
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1581089606
+export SOURCE_DATE_EPOCH=1601313942
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
-cp %{_builddir}/luarocks-3.3.1/COPYING %{buildroot}/usr/share/package-licenses/luarocks/a14cbc3ba7fedef88be53987899fe9a6a9923d07
-cp %{_builddir}/luarocks-3.3.1/spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luarocks/4dfe495c34967d84e2490b354788bf011ffdd8c5
+cp %{_builddir}/luarocks-3.4.0/COPYING %{buildroot}/usr/share/package-licenses/luarocks/a14cbc3ba7fedef88be53987899fe9a6a9923d07
+cp %{_builddir}/luarocks-3.4.0/spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luarocks/4dfe495c34967d84e2490b354788bf011ffdd8c5
 %make_install
 ## install_append content
 ./configure --prefix=/usr --with-lua-interpreter=luajit
