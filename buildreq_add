@@ -1,5 +1,8 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-lua-dev
-lua52-dev
 LuaJIT-dev
+compat-lua-52-dev
+compat-lua-52-staticdev
+compat-lua-53-dev
+compat-lua-53-staticdev
+lua-dev
