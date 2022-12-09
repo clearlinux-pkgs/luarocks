@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x3FD8F43C2BB3C478 (h@hisham.hm)
 #
 Name     : luarocks
-Version  : 3.9.1
-Release  : 22
-URL      : https://luarocks.org/releases/luarocks-3.9.1.tar.gz
-Source0  : https://luarocks.org/releases/luarocks-3.9.1.tar.gz
-Source1  : https://luarocks.org/releases/luarocks-3.9.1.tar.gz.asc
+Version  : 3.9.2
+Release  : 23
+URL      : https://luarocks.org/releases/luarocks-3.9.2.tar.gz
+Source0  : https://luarocks.org/releases/luarocks-3.9.2.tar.gz
+Source1  : https://luarocks.org/releases/luarocks-3.9.2.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
@@ -54,8 +54,8 @@ license components for the luarocks package.
 
 
 %prep
-%setup -q -n luarocks-3.9.1
-cd %{_builddir}/luarocks-3.9.1
+%setup -q -n luarocks-3.9.2
+cd %{_builddir}/luarocks-3.9.2
 %patch1 -p1
 
 %build
@@ -63,7 +63,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656884203
+export SOURCE_DATE_EPOCH=1670561992
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -76,11 +76,11 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1656884203
+export SOURCE_DATE_EPOCH=1670561992
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/luarocks
-cp %{_builddir}/luarocks-3.9.1/COPYING %{buildroot}/usr/share/package-licenses/luarocks/a14cbc3ba7fedef88be53987899fe9a6a9923d07
-cp %{_builddir}/luarocks-3.9.1/spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luarocks/4dfe495c34967d84e2490b354788bf011ffdd8c5
+cp %{_builddir}/luarocks-%{version}/COPYING %{buildroot}/usr/share/package-licenses/luarocks/3574b16eef6b2241b99934f62d3e15868b0ea01d
+cp %{_builddir}/luarocks-%{version}/spec/fixtures/git_repo/LICENSE %{buildroot}/usr/share/package-licenses/luarocks/4dfe495c34967d84e2490b354788bf011ffdd8c5
 %make_install
 ## install_append content
 # in increasing order by version... (luajit is 5.1-based)
@@ -490,5 +490,5 @@ make clean
 
 %files license
 %defattr(0644,root,root,0755)
+/usr/share/package-licenses/luarocks/3574b16eef6b2241b99934f62d3e15868b0ea01d
 /usr/share/package-licenses/luarocks/4dfe495c34967d84e2490b354788bf011ffdd8c5
-/usr/share/package-licenses/luarocks/a14cbc3ba7fedef88be53987899fe9a6a9923d07
